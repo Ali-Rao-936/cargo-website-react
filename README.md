@@ -59,8 +59,6 @@ cp .env.example .env.local
 npm run dev
 ```
 
-The app runs at `http://localhost:3000`.
-
 ## Scripts
 
 ```bash
