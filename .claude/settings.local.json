@@ -6,7 +6,8 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "mcp__ide__getDiagnostics",
-      "Bash(npx kill-port *)"
+      "Bash(npx kill-port *)",
+      "Bash(git commit *)"
     ]
   }
 }
