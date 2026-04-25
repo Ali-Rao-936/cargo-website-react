@@ -67,9 +67,9 @@ export function Quote() {
         body: JSON.stringify(formData),
       });
       const data: QuoteApiResponse = await res.json();
-      if (data.ok) {
+      if (data.ok === true) {
         setIsSubmitted(true);
-      } else {
+      } else if (data.ok === false) {
         setApiError(data.message);
       }
     } catch {

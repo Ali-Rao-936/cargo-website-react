@@ -104,7 +104,7 @@ export function Tracking() {
               <div className="space-y-6 relative before:absolute before:inset-0 before:ml-[15px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-200 before:to-transparent">
                 {result.timeline.map((event, index) => (
                   <div key={index} className="relative flex items-start justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div className="flex items-center justify-center w-8 h-8 rounded-full border-4 border-white bg-slate-200 text-slate-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"
+                    <div
                          className={cn(
                            "flex items-center justify-center w-8 h-8 rounded-full border-4 border-white shadow shrink-0 z-10 ml-0 md:mx-auto md:order-1",
                            event.completed ? "bg-brand-orange text-white" : "bg-slate-200 text-slate-400"

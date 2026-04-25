@@ -84,7 +84,7 @@ export function Services() {
 
                   <div className="pt-4">
                     <Link to="/quote">
-                      <Button variant="outline">Request Service</Button>
+                      <Button variant="outline" className="hover:bg-brand-blue hover:text-white hover:border-brand-blue">Request Service</Button>
                     </Link>
                   </div>
                 </div>

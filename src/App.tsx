@@ -16,7 +16,7 @@ import { Contact } from "./pages/Contact";
 export default function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col pt-20"> {/* pt-20 accounts for sticky navbar */}
+      <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">
           <Routes>

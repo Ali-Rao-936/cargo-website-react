@@ -1,4 +1,5 @@
 import type { QuoteFormData } from "../src/lib/quoteValidation.js";
+import type { ContactFormData } from "../src/lib/contactValidation.js";
 
 const SERVICE_LABELS: Record<string, string> = {
   air: "Air Freight",
@@ -79,6 +80,48 @@ export function buildBusinessEmail(data: QuoteFormData): { subject: string; html
       ${row("Weight", data.weight ? `${data.weight} kg` : "")}
       ${row("Notes", data.message)}
     </table>
+  `);
+
+  return { subject, html };
+}
+
+export function buildContactBusinessEmail(data: ContactFormData): { subject: string; html: string } {
+  const subject = `New Contact Message from ${data.name}`;
+  const timestamp = new Date().toUTCString();
+
+  const html = emailWrapper(`
+    <h2 style="margin:0 0 4px;font-size:20px;font-weight:700;color:#1e3a8a;">New Contact Message</h2>
+    <p style="margin:0 0 24px;font-size:13px;color:#64748b;">Submitted: ${timestamp}</p>
+    <table cellpadding="0" cellspacing="0" style="width:100%;">
+      ${sectionHeader("Contact Details")}
+      ${row("Name", data.name)}
+      ${row("Email", `<a href="mailto:${data.email}" style="color:#1e3a8a;">${data.email}</a>`)}
+      ${sectionHeader("Message")}
+      ${row("Subject", data.subject)}
+      ${row("Message", data.message)}
+    </table>
+  `);
+
+  return { subject, html };
+}
+
+export function buildContactConfirmationEmail(data: ContactFormData): { subject: string; html: string } {
+  const subject = "We received your message — CargoPeak";
+
+  const html = emailWrapper(`
+    <p style="margin:0 0 20px;font-size:16px;color:#1e293b;">Hi ${data.name},</p>
+    <div style="background:#f0fdf4;border-left:4px solid #22c55e;padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:24px;">
+      <p style="margin:0;font-size:18px;font-weight:600;color:#166534;">We received your message.</p>
+      <p style="margin:6px 0 0;font-size:16px;color:#166534;">Our team will contact you soon.</p>
+    </div>
+    <p style="margin:0 0 24px;font-size:14px;color:#475569;line-height:1.6;">
+      Your message has been received and one of our team members will get back to you within <strong>24 hours</strong>.
+    </p>
+    <table cellpadding="0" cellspacing="0" style="width:100%;">
+      ${sectionHeader("Your Message Summary")}
+      ${row("Subject", data.subject)}
+    </table>
+    <p style="margin:28px 0 0;font-size:14px;color:#475569;">— The CargoPeak Team</p>
   `);
 
   return { subject, html };

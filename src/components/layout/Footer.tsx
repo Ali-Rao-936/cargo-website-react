@@ -44,15 +44,15 @@ export function Footer() {
             <ul className="space-y-4 text-sm font-semibold">
               <li className="flex items-start space-x-3">
                 <MapPin size={20} className="text-brand-orange shrink-0 mt-0.5" />
-                <span>Al Quoz Industrial Area 3,<br />Dubai, UAE</span>
+                <span>Al Quoz Industrial Area 2,<br />Dubai, United Arab Emirates</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={20} className="text-brand-orange shrink-0" />
-                <span>+971 50 123 4567</span>
+                <span>+971 50 881 9829</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={20} className="text-brand-orange shrink-0" />
-                <span>info@cargopeak.ae</span>
+                <span>info@cargopeakuae.com</span>
               </li>
             </ul>
           </div>
