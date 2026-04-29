@@ -14,6 +14,8 @@ import { Quote } from "./pages/Quote";
 import { Tracking } from "./pages/Tracking";
 import { Contact } from "./pages/Contact";
 import { Auth } from "./pages/Auth";
+import { AddRating } from "./pages/AddRating";
+import { AllRatings } from "./pages/AllRatings";
 
 export default function App() {
   return (
@@ -29,6 +31,8 @@ export default function App() {
               <Route path="/tracking" element={<Tracking />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/ratings/add" element={<AddRating />} />
+              <Route path="/ratings" element={<AllRatings />} />
             </Routes>
           </main>
           <Footer />

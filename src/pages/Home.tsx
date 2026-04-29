@@ -1,6 +1,9 @@
-import { ArrowRight, Plane, Ship, Truck, PackageCheck, BarChart3, Clock, ShieldCheck } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Plane, Ship, Truck, PackageCheck, BarChart3, Clock, ShieldCheck, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/Button";
+import { supabase } from "../lib/supabase";
+import { cn } from "../lib/utils";
 
 const services = [
   {
@@ -33,6 +36,18 @@ const stats = [
 ];
 
 export function Home() {
+  const [avgStars, setAvgStars] = useState<number | null>(null);
+  const [reviewCount, setReviewCount] = useState(0);
+
+  useEffect(() => {
+    supabase.from("ratings").select("stars").then(({ data }) => {
+      if (data && data.length > 0) {
+        setReviewCount(data.length);
+        setAvgStars(data.reduce((sum, r) => sum + r.stars, 0) / data.length);
+      }
+    });
+  }, []);
+
   return (
     <div className="flex flex-col w-full">
       
@@ -173,6 +188,48 @@ export function Home() {
                  ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Ratings Section */}
+      <section className="py-20 bg-white border-b border-slate-200">
+        <div className="container mx-auto px-4 md:px-8 text-center">
+          <div className="inline-flex items-center gap-2 bg-amber-50 text-amber-600 px-3 py-1 rounded-full text-xs font-bold mb-4 tracking-wide uppercase border border-amber-100">
+            <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+            Customer Reviews
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">
+            What Our Customers Say
+          </h2>
+          {avgStars !== null ? (
+            <div className="flex flex-col items-center gap-2 mb-8">
+              <div className="flex gap-1">
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <Star
+                    key={n}
+                    className={cn(
+                      "w-7 h-7",
+                      n <= Math.round(avgStars) ? "text-amber-400 fill-amber-400" : "text-slate-200"
+                    )}
+                  />
+                ))}
+              </div>
+              <p className="text-2xl font-black text-slate-900">
+                {avgStars.toFixed(1)} <span className="text-slate-400 font-normal text-lg">/ 5</span>
+              </p>
+              <p className="text-sm text-slate-500">{reviewCount} {reviewCount === 1 ? "review" : "reviews"}</p>
+            </div>
+          ) : (
+            <p className="text-slate-500 mb-8">Be the first to leave a review!</p>
+          )}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/ratings/add">
+              <Button size="lg">Rate Us</Button>
+            </Link>
+            <Link to="/ratings">
+              <Button variant="outline" size="lg">View All Reviews</Button>
+            </Link>
           </div>
         </div>
       </section>
