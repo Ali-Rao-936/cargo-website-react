@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { createClient } from '@supabase/supabase-js';
 import { buildContactBusinessEmail, buildContactConfirmationEmail } from '../server/emailTemplates.js';
 import type { ContactFormData } from '../src/lib/contactValidation.js';
 
@@ -55,6 +56,17 @@ export default async function handler(req: any, res: any) {
 
     if (confirmResult.error) {
       console.error('[api/contact] Confirmation email error:', confirmResult.error);
+    }
+
+    if (process.env.SUPABASE_URL && process.env.SUPABASE_KEY) {
+      const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+      const { error: dbError } = await supabase.from('contacts').insert({
+        name: data.name.trim(),
+        email: data.email.trim(),
+        subject: data.subject.trim(),
+        message: data.message.trim(),
+      });
+      if (dbError) console.error('[api/contact] Supabase insert error:', dbError.message);
     }
 
     res.json({ ok: true });

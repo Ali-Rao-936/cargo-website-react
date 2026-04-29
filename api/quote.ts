@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { createClient } from '@supabase/supabase-js';
 import { buildBusinessEmail, buildConfirmationEmail } from '../server/emailTemplates.js';
 import type { QuoteFormData } from '../src/lib/quoteValidation.js';
 
@@ -57,6 +58,22 @@ export default async function handler(req: any, res: any) {
 
     if (confirmResult.error) {
       console.error('[api] Confirmation email error:', confirmResult.error);
+    }
+
+    if (process.env.SUPABASE_URL && process.env.SUPABASE_KEY) {
+      const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+      const { error: dbError } = await supabase.from('quotes').insert({
+        name: data.name.trim(),
+        company: data.company?.trim() || null,
+        email: data.email.trim(),
+        phone: data.phone.trim(),
+        pickup: data.pickup.trim(),
+        destination: data.destination.trim(),
+        service_type: data.serviceType,
+        weight: Number(data.weight),
+        additional_info: data.message?.trim() || null,
+      });
+      if (dbError) console.error('[api] Supabase insert error:', dbError.message);
     }
 
     res.json({ ok: true });

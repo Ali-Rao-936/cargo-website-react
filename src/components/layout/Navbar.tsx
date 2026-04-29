@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Package, Menu, X } from "lucide-react";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/Button";
+import { useAuth } from "../../contexts/AuthContext";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -15,6 +16,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,6 +65,27 @@ export function Navbar() {
                 Get a Quote
               </Button>
             </Link>
+            <div className="flex items-center gap-2">
+              {user ? (
+                <>
+                  <span className="text-[10px] text-slate-500 max-w-[120px] truncate normal-case tracking-normal font-normal">
+                    {user.email}
+                  </span>
+                  <Button variant="ghost" size="sm" onClick={() => signOut()}>
+                    Sign Out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link to="/auth?mode=signin">
+                    <Button variant="ghost" size="sm">Sign In</Button>
+                  </Link>
+                  <Link to="/auth?mode=signup">
+                    <Button variant="primary" size="sm">Sign Up</Button>
+                  </Link>
+                </>
+              )}
+            </div>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -95,6 +118,21 @@ export function Navbar() {
             <Link to="/quote" className="w-full">
               <Button variant="primary" className="w-full">Get a Quote</Button>
             </Link>
+            {user ? (
+              <div className="flex items-center justify-between border-t border-slate-100 pt-4 mt-2 px-4">
+                <span className="text-sm text-slate-500 truncate">{user.email}</span>
+                <Button variant="ghost" size="sm" onClick={() => signOut()}>Sign Out</Button>
+              </div>
+            ) : (
+              <div className="flex gap-3 border-t border-slate-100 pt-4 mt-2">
+                <Link to="/auth?mode=signin" className="flex-1">
+                  <Button variant="outline" className="w-full">Sign In</Button>
+                </Link>
+                <Link to="/auth?mode=signup" className="flex-1">
+                  <Button variant="primary" className="w-full">Sign Up</Button>
+                </Link>
+              </div>
+            )}
           </nav>
         </div>
       )}
