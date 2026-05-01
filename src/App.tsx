@@ -16,6 +16,7 @@ import { Contact } from "./pages/Contact";
 import { Auth } from "./pages/Auth";
 import { AddRating } from "./pages/AddRating";
 import { AllRatings } from "./pages/AllRatings";
+import { CountryCargoPage } from "./pages/CountryCargoPage";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/services/cargo-to/:country" element={<CountryCargoPage />} />
               <Route path="/quote" element={<Quote />} />
               <Route path="/tracking" element={<Tracking />} />
               <Route path="/contact" element={<Contact />} />
