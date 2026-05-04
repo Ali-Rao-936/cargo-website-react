@@ -1,73 +1,183 @@
 <div align="center">
-<img width="1200" height="475" alt="CargoPeak Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 
-# CargoPeak
+<img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+<img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+<img src="https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
+<img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+<img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=black" />
 
-**Fast & Reliable Cargo Services from the UAE**
+<br/><br/>
 
-A modern logistics company website with shipment tracking, instant quote requests, and multi-modal freight services.
+# 🚢 CargoPeak
 
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white&style=flat-square)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white&style=flat-square)
-![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white&style=flat-square)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?logo=tailwindcss&logoColor=white&style=flat-square)
+### Full-Stack Logistics & Shipping Platform — UAE
+
+A modern, production-ready logistics website built for a UAE-based cargo and shipping company. Features live customer ratings, email workflows, Google OAuth, shipment tracking, and dedicated country destination pages — all powered by React 19, TypeScript, and Supabase.
+
+[Live Demo](#) · [Report Bug](#) · [Request Feature](#)
 
 </div>
 
 ---
 
-## About
+## ✨ Features
 
-CargoPeak is a UAE-based logistics company website offering Air Freight, Sea Freight, Land Transport, and Door-to-Door Delivery services. The site is built around five pages — Home, Services, Quote, Tracking, and Contact — all wrapped in a persistent layout with a sticky navbar, footer, and a floating WhatsApp chat button for instant customer support.
+| Feature | Description |
+|---|---|
+| 🛫 **Multi-Modal Services** | Air freight, sea freight (FCL/LCL), road cargo (GCC), door-to-door, packing & relocation, customs clearance, warehousing, express delivery, vehicle shipping, project logistics, e-commerce fulfillment |
+| 🌍 **Country Destination Pages** | Dedicated routes for Saudi Arabia, Qatar, Oman, Kuwait, Bahrain, Iraq, Canada, and Russia |
+| 📋 **Quote Request Form** | Validated form that emails a notification to the business and a confirmation to the customer via Resend |
+| 📦 **Shipment Tracking** | Tracking UI with mock data — ready to wire to a real tracking API |
+| ⭐ **Live Customer Ratings** | Supabase-backed star ratings with half-star display; live average shown on homepage |
+| 🔐 **Authentication** | Google OAuth and email/password login via Supabase Auth |
+| 💬 **WhatsApp Quick Contact** | Floating WhatsApp button for instant customer reach |
+| 🎞️ **Scroll Animations** | Smooth scroll-triggered entrance animations powered by Motion |
 
-The **Quote** page lets customers submit a shipment request with their details, route, and cargo specifications. The **Tracking** page provides a timeline-based shipment tracking UI. Both are frontend-ready and designed to be wired up to a backend or third-party logistics API.
+---
 
-## Features
+## 🛠️ Tech Stack
 
-- **Air, Sea, Land & Door-to-Door** freight service pages
-- **Quote Request Form** — collects customer details, route, service type, and cargo weight
-- **Shipment Tracking** — timeline UI showing pickup, processing, customs, and transit stages
-- **Responsive Design** — mobile-first with animated hamburger nav
-- **WhatsApp Integration** — floating chat button for instant customer contact
-- **Smooth Animations** — powered by Framer Motion
+| Layer | Technology |
+|---|---|
+| **Frontend** | React 19, TypeScript, Vite 6, React Router v7 |
+| **Styling** | Tailwind CSS v4, Lucide React icons |
+| **Backend** | Express.js (Node), `tsx` for TypeScript execution |
+| **Email** | [Resend](https://resend.com) |
+| **Database & Auth** | [Supabase](https://supabase.com) |
+| **Animation** | Motion (`motion/react`) |
 
-## Tech Stack
+---
 
-| Tool | Version |
-|------|---------|
-| React | 19 |
-| TypeScript | 5.8 |
-| Vite | 6 |
-| Tailwind CSS | 4 |
-| React Router | 7 |
-| Framer Motion | 12 |
-| Lucide React | latest |
+## 🚀 Getting Started
 
-## Getting Started
+### Prerequisites
 
-**Prerequisites:** Node.js 18+
+- Node.js 18+
+- A [Supabase](https://supabase.com) project
+- A [Resend](https://resend.com) account
+
+### 1. Clone the repository
 
 ```bash
-# 1. Install dependencies
+git clone https://github.com/your-username/cargopeak.git
+cd cargopeak
+```
+
+### 2. Install dependencies
+
+```bash
 npm install
+```
 
-# 2. Set up environment variables
-cp .env.example .env.local
-# Add your GEMINI_API_KEY to .env.local
+### 3. Configure environment variables
 
-# 3. Start the dev server
+```bash
+cp .env.example .env
+```
+
+Open `.env` and fill in your values:
+
+| Variable | Description |
+|---|---|
+| `RESEND_API_KEY` | API key from resend.com |
+| `FROM_EMAIL` | Verified sender address (`onboarding@resend.dev` works for testing) |
+| `VITE_SUPABASE_URL` | Your Supabase project URL |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Supabase anon/publishable key |
+
+### 4. Start the development server
+
+```bash
 npm run dev
 ```
 
-## Scripts
+This starts two processes concurrently:
+
+- **Client** — Vite dev server at `http://localhost:3000`
+- **Server** — Express API at `http://localhost:3001`
+
+---
+
+## 📜 Scripts
 
 ```bash
-npm run dev      # Development server
-npm run build    # Production build
-npm run preview  # Preview production build
-npm run lint     # TypeScript type check
+npm run dev        # Start client + server in development mode
+npm run build      # Production build to dist/
+npm run preview    # Preview the production build locally
+npm run lint       # TypeScript type-check (tsc --noEmit)
+npm run clean      # Delete dist/
 ```
 
-## License
+---
 
-Apache 2.0
+## 📁 Project Structure
+
+```
+cargopeak/
+├── src/
+│   ├── components/
+│   │   ├── layout/            # Navbar, Footer, WhatsAppLink
+│   │   └── ui/                # Button, Input, Textarea primitives
+│   ├── contexts/
+│   │   └── AuthContext.tsx
+│   ├── lib/
+│   │   ├── supabase.ts
+│   │   ├── utils.ts           # cn() helper (clsx + tailwind-merge)
+│   │   ├── quoteValidation.ts
+│   │   └── contactValidation.ts
+│   └── pages/
+│       ├── Home.tsx
+│       ├── Services.tsx
+│       ├── CountryCargoPage.tsx
+│       ├── Quote.tsx
+│       ├── Tracking.tsx
+│       ├── Contact.tsx
+│       ├── Auth.tsx
+│       ├── AddRating.tsx
+│       └── AllRatings.tsx
+│
+└── server/
+    ├── index.ts               # Express app — /api/quote and /api/contact
+    └── emailTemplates.ts      # HTML email builders
+```
+
+---
+
+## 🗺️ Routes
+
+| Path | Page |
+|---|---|
+| `/` | Home — hero, services overview, stats, live ratings |
+| `/services` | Services — full list, FAQ, destination links |
+| `/services/cargo-to/:country` | Country-specific cargo page |
+| `/quote` | Quote request form |
+| `/tracking` | Shipment tracking |
+| `/contact` | Contact form |
+| `/auth` | Login / Sign up |
+| `/ratings` | All customer reviews |
+| `/ratings/add` | Submit a rating (authenticated users only) |
+
+---
+
+## 🎨 Brand Tokens
+
+Defined in `src/index.css` via Tailwind's `@theme`:
+
+| Token | Value | Preview |
+|---|---|---|
+| `brand-blue` | `#1e3a8a` | ![#1e3a8a](https://img.shields.io/badge/-%231e3a8a-1e3a8a?style=flat-square) |
+| `brand-orange` | `#f97316` | ![#f97316](https://img.shields.io/badge/-%23f97316-f97316?style=flat-square) |
+| `brand-light` | `#f8fafc` | ![#f8fafc](https://img.shields.io/badge/-%23f8fafc-f8fafc?style=flat-square) |
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+Built with ❤️ by **Ali Gul** — Dubai, UAE
+
+</div>

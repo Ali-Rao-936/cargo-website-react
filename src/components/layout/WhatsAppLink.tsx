@@ -1,5 +1,5 @@
 export function WhatsAppLink() {
-  const phoneNumber = "971508819829";
+  const phoneNumber = import.meta.env.VITE_WHATSAPP_NUMBER as string;
   const message = encodeURIComponent("Hello, I'd like to inquire about cargo services.");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
